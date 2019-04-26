@@ -1,2 +1,20 @@
-<!--pages/topic/topic.wxml-->
-<text>pages/topic/topic.wxml</text>
+<view class='container'>
+  <scroll-view class='topic-list' scroll-y='true' scroll-top='{{scrollTop}}'>
+    <navigator class='item' wx:for='{{TopicList}}' wx:key='{{item.id}}' url='../topicDetail/topicDetail?id={{item.id}}'>
+      <image class='img' src='{{item.scene_pic_url}}'></image>
+      <view class='info'>
+        <text class='title'>{{item.title}}</text>
+        <text class='desc'>{{item.subtitle}}</text>
+        <text class='price'>{{item.price_info}}元起</text>
+      </view>
+    </navigator>
+    <view class='page'>
+      <view 
+      bindtap='prevPage'
+      class="prev {{page<=1?'disabled':''}}">上一页</view>
+      <view 
+      bindtap='nextPage'
+      class="nextPage {{count/size<page+1?'disabled':''}}">下一页</view>
+    </view>
+  </scroll-view>
+</view>
