@@ -38,12 +38,34 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
 					"name": "搜索页面",
 					"pathName": "pages/search/search",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "精选详情",
+					"pathName": "pages/topicDetail/topicDetail",
+					"query": "id=314",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布留言",
+					"pathName": "pages/commentPost/commentPost",
+					"query": "valueId=314&typeId=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "查看留言",
+					"pathName": "pages/topicComment/topicComment",
+					"query": "valueId=314&typeId=1",
 					"scene": null
 				}
 			]

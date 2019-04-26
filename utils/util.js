@@ -126,7 +126,7 @@ function getUserInfo() {
     wx.getUserInfo({
       withCredentials: true,
       success: function (res) {
-        if (res.detail.errMsg === 'getUserInfo:ok') {
+        if (res.errMsg === 'getUserInfo:ok') {
           resolve(res);
         } else {
           reject(res)

@@ -2,7 +2,11 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/topic/topic",
+    "pages/topicDetail/topicDetail",
+    "pages/commentPost/commentPost",
+    "pages/topicComment/topicComment"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -24,8 +28,10 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/index/index",
-        "text": "32"
+        "pagePath": "pages/topic/topic",
+        "iconPath": "static/images/ic_menu_topic_nor.png",
+        "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
+        "text": "专题"
       }
     ]
   }

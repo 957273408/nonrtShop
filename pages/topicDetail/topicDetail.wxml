@@ -10,31 +10,33 @@
   <scroll-view class='comments'>
     <view class='h'>
       <text class='t'>精选留言</text>
-      <image class='i' src='http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/comment-add-2aca147c3f.png'></image>
+      <image class='i' 
+        bindtap='postComment'  src='http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/comment-add-2aca147c3f.png'></image>
     </view>
     <view class='has-comments' wx:if='{{commentList.length}}'>
       <view class='b'>
-        <view class='item'
-        wx:for='{{commentList}}'
-        wx:key='item.id'
-        >
+        <view class='item' wx:for='{{commentList}}' wx:key='item.id'>
           <view class='info'>
             <view class='user'>
-              <image class='avatar' src='{{item.user_info.avatar}}' ></image>
+              <image class='avatar' src='{{item.user_info.avatar}}'></image>
               <text class='nickname'>{{item.user_info.nickname}}</text>
-            </view>
-            <view class='comment'>
-              2312
-            </view>
-          </view>
 
+            </view>
+            <view class='time'>{{item.add_time}}</view>
+          </view>
+          <view class='comment'>
+            {{item.content}}
+          </view>
         </view>
       </view>
       <view class='load'>
-        <navigator>查看更多</navigator>
+        <navigator url="/pages/topicComment/topicComment?valueId={{topic.id}}&typeId=1">查看更多</navigator>
       </view>
     </view>
-    <view class='no-comments'></view>
+    <view class='no-comments' wx:if='{{!commentList.length}}'>
+      <image class='icon' src='http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/no-comment-560f87660a.png'></image>
+      <text class='txt'>等你来留言</text>
+    </view>
   </scroll-view>
   <!-- 专题推荐 -->
   <scroll-view class='rec-box'>
@@ -42,9 +44,9 @@
       <text class='txt'>专题推荐</text>
     </view>
     <view class='b'>
-      <navigator class='item'>
-        <image class='img'></image>
-        <text>123</text>
+      <navigator class='item' url='../topicDetail/topicDetail?id={{item.id}}' wx:for='{{topicList}}' wx:key='item.id'>
+        <image class='img' src='{{item.scene_pic_url}}'></image>
+        <text class='title'>{{item.title}}</text>
       </navigator>
     </view>
   </scroll-view>
