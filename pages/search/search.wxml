@@ -1,10 +1,78 @@
-<scroll-view class='container' style='height:100%'>
+<!--pages/search/search.wxml-->
+<scroll-view class='container' scroll-y='true' style='height:100%'>
+  <!-- 搜索内容 -->
   <view class='search-header'>
     <view class='input-box'>
       <image class='icon' src='http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/search2-2fb94833aa.png'></image>
-      <input name='input' class='keywrod' focus='true' value='{{keyword}}' confirm-type='search' bindinput='inputChange' placeholder='请输入'/> 
-      <image class='del' wx:if='' src='http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/clearIpt-f71b83e3c2.png' />
+      <input name='input' b class='keyword' focus='true' bindinput='inputChange' bindblur='inputBlur' bindconfirm='onKeywordConfirm' bindfocus='inputFocus' value='{{keyword}}' confirm-type='search' placeholder='{{defaultKeyword.keyword}}'></input>
+      <image class='del' bindtap='clearKeyword' wx:if='{{keyword}}' src='http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/clearIpt-f71b83e3c2.png'></image>
     </view>
-    <view>取消</view>
+    <view bindtap='closeSearch' class='right'>
+      <text>取消</text>
+    </view>
+  </view>
+  <!-- 没有搜索展示的内容 -->
+  <view class='no-search' wx:if='{{searchStatus}}'>
+    <!-- 历史记录 -->
+    <view class='search-keywords search-history' wx:if='{{historyKeywordList.length}}'>
+      <view class='h'>
+        <text class='title'>历史记录</text>
+        <image class='icon' bindtap='clearHistory' src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/del1-93f0a4add4.png"></image>
+      </view>
+      <view class='b' >
+        <view class='item' wx:key='{{index}}' wx:for='{{historyKeywordList}}' data-keyword="{{item}}" bindtap='onKeywordTap' hover-class="navigator-hover">{{item}}</view>
+      </view>
+    </view>
+    <!-- 热门搜索 -->
+    <view class='search-keywords search-hot'>
+      <view class='h'>
+        <text>热门搜索</text>
+      </view>
+      <view class='b'>
+        <view class="item {{item.is_hot?'active':''}}" wx:key='{{index}}' bindtap='onKeywordTap' data-keyword='{{item.keyword}}' wx:for='{{hotKeywordList}}' hover-class=" navigator-hover ">
+          {{item.keyword}}
+        </view>
+      </view>
+    </view>
+  </view>
+    <!-- 搜索匹配 -->
+    <view class='shelper-list' wx:if='helpKeyword.length'>
+      <view class='item' bindtap='onKeywordTap' data-keyword='{{item}}' wx:key='{{item}}' wx:for='{{helpKeyword}}' >{{item}}</view>
+    </view>
+  <!-- 搜索展示内容 -->
+  <view class='search-result'>
+    <!-- 筛选条件 -->
+    <view class='sort'>
+      <view class='sort-box'>
+        <view class='item'>
+          <text>综合</text>
+        </view>
+        <view class='item  by-price'>
+          <text>价格</text>
+        </view>
+        <view class='item '>
+          <text>分类</text>
+        </view>
+      </view>
+      <view class="sort-box-category ">
+        <view class="item " >3123</view>
+      </view>
+    </view>
+    <!-- 商品展示 -->
+    <view class='cate-item'>
+      <view class='b'>
+        <navigator>
+          <image class='img'></image>
+          <text class='name'>日</text>
+          <text class='price'>$399</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+  <!-- 无匹配商品展示内容 -->
+  <view class='search-result-empty'>
+    <image src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noSearchResult-7572a94f32.png "></image>
+    <text class='text'>您寻找的商品还未上架</text>
   </view>
 </scroll-view>

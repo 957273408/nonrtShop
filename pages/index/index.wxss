@@ -55,6 +55,7 @@
 
 .m-menu .item {
   flex: 1;
+  width: 0;
   display: block;
   padding: 20rpx 0;
 }

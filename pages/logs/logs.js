@@ -1,4 +1,4 @@
-// pages/topicComment/topicComment.js
+// pages/logs/logs.js
 Page({
 
   /**

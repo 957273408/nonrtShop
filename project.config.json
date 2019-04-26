@@ -9,18 +9,17 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.6",
-	"appid": "wx824005d69d1cec5b",
-	"projectname": "%E5%B0%8F%E7%A8%8B%E5%BA%8F",
+	"libVersion": "2.6.5",
+	"appid": "wx39448ee18366bf1c",
+	"projectname": "nonrtShop",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -39,27 +38,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 0,
 			"list": [
 				{
 					"id": -1,
-					"name": "搜索",
+					"name": "搜索页面",
 					"pathName": "pages/search/search",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "s",
-					"pathName": "pages/topic/topic",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "精选详情",
-					"pathName": "pages/topicDetail/topicDetail",
-					"query": "id=314",
 					"scene": null
 				}
 			]
