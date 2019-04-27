@@ -6,7 +6,8 @@
     "pages/topic/topic",
     "pages/topicDetail/topicDetail",
     "pages/commentPost/commentPost",
-    "pages/topicComment/topicComment"
+    "pages/topicComment/topicComment",
+    "pages/goods/goods"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -34,5 +35,6 @@
         "text": "专题"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
