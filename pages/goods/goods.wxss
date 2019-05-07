@@ -1,7 +1,9 @@
 .container {
   margin-bottom: 100rpx;
 }
-
+view{
+  word-break:break-all;
+}
 .goodsimgs {
   width: 750rpx;
   height: 750rpx;
@@ -640,7 +642,7 @@
 .attr-pop .p {
   font-size: 33rpx;
   color: #333;
-  height: 33rpx;
+  height: 44rpx;
   line-height: 33rpx;
   margin-bottom: 10rpx;
 }
@@ -648,8 +650,8 @@
 .attr-pop .a {
   font-size: 29rpx;
   color: #333;
-  height: 40rpx;
-  line-height: 40rpx;
+  height: 34rpx;
+  line-height: 34rpx;
 }
 
 .spec-con {
