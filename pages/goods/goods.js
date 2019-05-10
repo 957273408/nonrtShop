@@ -34,6 +34,119 @@ Page({
       openAttr: true
     })
   },
+  closeAttr() {
+    this.setData({
+      openAttr: false
+    })
+  },
+  // 加入购物车
+  addTocart() {
+    if (this.data.openAttr === false) {
+      this.setData({
+        openAttr: !this.data.openAttr
+      })
+      return false
+    }
+    if (this.isCheckedAllSpec()) {
+      wx.showToast({
+        image: '/static/images/icon_error.png',
+        title: '请选择规格',
+        mask: false //
+      })
+      return false;
+    }
+    // 根据选中的规格判断是否有对应的sku信息
+    let checkedProduct = this.getCheckedProductItem(this.getCheckedSpecKey())
+    if (!checkedProduct || checkedProduct.length == 0) {
+      wx.showToast({
+        image: '/static/images/icon_error.png',
+        title: '库存不足',
+        mask: true
+      })
+      return false
+    }
+    // 验证选择数量是否超过库存
+    if (checkedProduct.goods_number < this.data.number) {
+      wx.showToast({
+        image: '/static/images/icon_error.png',
+        title: '库存不足',
+        mask: true
+      })
+      return false
+    }
+    // 添加到购物车
+    util.request(api.CartAdd, {
+      goodsId: this.data.goods.id,
+      number: this.data.number,
+      productId: checkedProduct[0].id
+    }, "POST").then(res => {
+      if (res.errno == 0) {
+        wx.showToast({
+          title: '添加成功'
+        })
+        this.setData({
+          openAttr: !that.data.openAttr,
+          cartGoodsCount: res.data.cartTotal.goodsCount
+        })
+      } else {
+        wx.showToast({
+          image: '/static/images/icon_error.png',
+          title: res.errmsg,
+          mask: true
+        });
+      }
+    })
+  },
+
+  getCheckedProductItem(key) {
+    return this.data.productList.filter(v => {
+      return v.goods_specification_ids === key
+    })
+  },
+  getCheckedSpecKey() {
+    let checkedValue = this.getCheckedSpecValue().map(v => {
+      return v.valueId
+    })
+    return checkedValue.join('_')
+  },
+  // 判断是否选择完整的
+  isCheckedAllSpec() {
+    return this.getCheckedSpecValue().some(e => {
+      return e.valueId === 0
+    })
+  },
+  // 打开购物车页面
+  openCartPage() {
+    wx.switchTab({
+      url: '/pages/cart/cart',
+    })
+  },
+  // 添加到收藏
+  addCannelCollect() {
+    util.request(api.CollectAddOrDelete, {
+      typeId: 0,
+      valueId: this.data.id
+    }, 'POST').then(res => {
+      if (res.errno == 0) {
+        if (res.data.type == 'add') {
+          that.setData({
+            'collectBackImage': that.data.hasCollectImage
+          });
+        } else {
+          that.setData({
+            'collectBackImage': that.data.noCollectImage
+          });
+        }
+      }else{
+        wx.showToast({
+          image: '/static/images/icon_error.png',
+          title: _res.errmsg,
+          mask: true
+        })
+      }
+    })
+  },
+  // 配置项选择
   clickSkuValue(evet) {
     let {
       nameId,
@@ -41,13 +154,16 @@ Page({
       index,
       nameindex
     } = evet.target.dataset
-    console.log(evet.target.dataset)
-    this.data.specificationList[nameindex].valueList[index].checked = this.data.specificationList[nameindex].valueList[index].checked ? false : true
+    this.data.specificationList[nameindex].valueList.forEach((e, i) => {
+      if (i == index) e.checked = e.checked ? false : true
+      else e.checked = false
+    })
     this.setData({
       specificationList: this.data.specificationList
     })
     this.changeSpecInfo()
   },
+  // 获取所有被选中的
   getCheckedSpecValue() {
     let checkedValues = this.data.specificationList.reduce((res, {
       specification_id,
@@ -58,9 +174,9 @@ Page({
         valueId: 0,
         valueText: ''
       }
-      valueList.forEach(e=>{
-        if(e.checked){
-          obj.valueId=e.id
+      valueList.forEach(e => {
+        if (e.checked) {
+          obj.valueId = e.id
           obj.valueText = e.value
         }
       })
@@ -69,11 +185,11 @@ Page({
     }, [])
     return checkedValues
   },
-  changeSpecInfo(){
+  changeSpecInfo() {
     let checkedNameValue = this.getCheckedSpecValue()
-    let checkedValue= checkedNameValue.filter(e=>{
+    let checkedValue = checkedNameValue.filter(e => {
       return e.valueId != 0
-    }).map(k=>{
+    }).map(k => {
       return k.valueText
     })
     this.setData({
@@ -81,12 +197,12 @@ Page({
     })
   },
   // 数量选择器
-  cutNumber(){
+  cutNumber() {
     this.setData({
-      number: this.data.number!=1?--this.data.number:1
+      number: this.data.number != 1 ? --this.data.number : 1
     })
   },
-  addNumber(){
+  addNumber() {
     this.setData({
       number: ++this.data.number
     })
