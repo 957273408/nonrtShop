@@ -1,0 +1,26 @@
+<!-- pages/brandDetail/brandDetail.wxml -->
+<view class="container">
+    <view class="brand-info">
+        <view class="name">
+            <image class="img" src="{{brand.list_pic_url}}"></image>
+            <view class="info-box">
+                <view class="info">
+                    <text class="txt">{{brand.name}}</text>
+                    <text class="line"></text>
+                </view>
+            </view>
+        </view>
+        <view class="desc">{{brand.simple_desc}}</view>
+    </view>
+    <view class="cate-item">
+        <view class="b">
+            <block wx:for="{{goodsList}}" wx:key="{{index}}">
+                <navigator class="item {{iindex % 2 == 0 ? 'item-b' : ''}}" url="../goods/goods?id={{item.id}}" redirect hover-class="className">
+                    <image class="img" src="{{item.list_pic_url}}"></image>
+                    <text class="name">{{item.name}}</text>
+                    <text class="price">${{item.retail_price}}</text>
+                </navigator>
+            </block>
+        </view>
+    </view>
+</view>

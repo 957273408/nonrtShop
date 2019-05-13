@@ -8,7 +8,9 @@
     "pages/commentPost/commentPost",
     "pages/topicComment/topicComment",
     "pages/goods/goods",
-    "pages/brandDetail/brandDetail"
+    "pages/brandDetail/brandDetail",
+    "pages/comment/comment",
+    "pages/brand/brand"
   ],
   "window": {
     "backgroundTextStyle": "dark",
