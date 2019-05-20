@@ -1,0 +1,36 @@
+<!-- pages/catalog/catalog.wxml -->
+<view class="container">
+    <view class="search">
+        <navigator class="input" url="/pages/search/search" hover-class="navigator-hover" open-type="navigate">
+            <image class="icon"></image>
+            <text class="txt">商品搜索，共{{goodsCount}}款好物</text>
+        </navigator>
+    </view>
+    <view class="catalog">
+        <scroll-view class="nav" scroll-y="true" scroll-top="0">
+            <view class="item {{currentCategory.id == item.id?'active':''}}" hover-class="none" wx:for='{{navList}}' wx:key='{{item.id}}' data-id='{{item.id}}' data-index='{{index}}' bindtap='switchCate' hover-stop-propagation="false">
+                {{item.name}}
+            </view>
+        </scroll-view>
+        <scroll-view class="cate" scroll-y="true">
+            <navigator class="banner" url="url" hover-class="navigator-hover" open-type="navigate">
+                <image class="image" src="{{currentCategory.wap_banner_url}}" ></image>
+                <view class="txt">{{currentCategory.front_name}}</view>
+            </navigator>
+            <view class="hd">
+                <text class="line"></text>
+                <text class="txt">{{currentCategory.name}}分类</text>
+                <text class="line"></text>
+            </view>
+            <view class="bd">
+                <navigator class="item {{(index+1) % 3 == 0 ? 'last' : ''}}" url="/pages/category/category?id={{item.id}}" 
+                wx:for='{{currentCategory.subCategoryList}}'
+                wx:key='{{item.id}}'
+                hover-class="navigator-hover" open-type="navigate">
+                    <image class="icon" src="{{item.wap_banner_url}}"></image>
+                    <text class="txt">{{item.name}}</text>
+                </navigator>
+            </view>
+        </scroll-view>
+    </view>
+</view>

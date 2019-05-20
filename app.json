@@ -10,7 +10,10 @@
     "pages/goods/goods",
     "pages/brandDetail/brandDetail",
     "pages/comment/comment",
-    "pages/brand/brand"
+    "pages/brand/brand",
+    "pages/category/category",
+    "pages/catalog/catalog",
+    "pages/cart/cart"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -36,6 +39,18 @@
         "iconPath": "static/images/ic_menu_topic_nor.png",
         "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
         "text": "专题"
+      },
+      {
+        "pagePath": "pages/catalog/catalog",
+        "iconPath": "static/images/ic_menu_sort_nor.png",
+        "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "iconPath": "static/images/ic_menu_shoping_nor.png",
+        "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
+        "text": "购物车"
       }
     ]
   },

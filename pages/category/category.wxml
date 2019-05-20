@@ -1,0 +1,27 @@
+<view class="container" hover-class="none" hover-stop-propagation="false">
+    <view class="cate-nav">
+        <scroll-view class="cate-nav-body" scroll-x="true" style='width:750rpx' scroll-left="{{scrollLeft}}">
+            <view wx:for="{{navList}}" wx:key="{{item.id}}" data-id='{{item.id}}' data-index="{{index}}" bindtap='switchCate' class="item {{id==item.id?'active':''}}">
+                <view class="name">{{item.name}}</view>
+            </view>
+        </scroll-view>
+    </view>
+    <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" style='height:{{scrollHeight}}'>
+        <view class="cate-item">
+            <view class="h">
+                <text class="name">{{currentCategory.name}}</text>
+                <text class="desc">{{currentCategory.front_desc}}</text>
+            </view>
+            <view class="b">
+                <navigator class="item {{(index + 1) % 2 == 0 ? 'item-b' : ''}}" 
+                wx:for='{{goodsList}}' wx:key="{{item.id}}"
+                url='/pages/goods/goods?id={{item.id}}'
+                 hover-class="navigator-hover" open-type="navigate">
+                    <image class="img" src="{{item.list_pic_url}}" background-size="cover"></image>
+                    <text class="name">{{item.name}}</text>
+                    <text class="price">{{item.retail_price}}</text>
+                </navigator>
+            </view>
+        </view>
+    </scroll-view>
+</view>

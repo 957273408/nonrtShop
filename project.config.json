@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -89,6 +89,20 @@
 					"name": "全部回复",
 					"pathName": "pages/comment/comment",
 					"query": "valueId=1011004&typeId=0",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "分类",
+					"pathName": "pages/category/category",
+					"query": "id=1005000",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "分类",
+					"pathName": "pages/catalog/catalog",
+					"query": "id=1005000",
 					"scene": null
 				}
 			]
